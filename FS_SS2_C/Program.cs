@@ -133,5 +133,21 @@ namespace FS_SS2_C
                 Console.WriteLine();
             }
         }
+        public void insert(string IDproduk, string NmaProduk, string Deskripsi, string Stok, string hrgajual, SqlConnection con)
+        {
+            string str = "";
+            str = "insert into HRD.PENJUALAN (IDproduk, NmaProduk, Stok, Hrgajual)" + "values(@nim, @nma, @alamat, @JK, @Phn)";
+            SqlCommand cmd = new SqlCommand(str, con);
+            cmd.CommandType = CommandType.Text;
+
+            cmd.Parameters.Add(new SqlParameter("nim", IDproduk));
+            cmd.Parameters.Add(new SqlParameter("nma", NmaProduk));
+            cmd.Parameters.Add(new SqlParameter("alamat", Deskripsi));
+            cmd.Parameters.Add(new SqlParameter("JK", Stok));
+            cmd.Parameters.Add(new SqlParameter("Phn", hrgajual));
+            cmd.ExecuteNonQuery();
+            Console.WriteLine("Data Berhasil Ditambahkan");
+        }
+
     }
 }
