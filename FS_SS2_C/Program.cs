@@ -60,13 +60,63 @@ namespace FS_SS2_C
                                                     pr.baca(conn);
                                                     conn.Close();
                                                 }
+                                                break;
+                                            case '2':
+                                                {
+                                                    Console.Clear();
+                                                    Console.WriteLine("Input Data Produk\n");
+                                                    Console.WriteLine("Masukkan ID Produk :");
+                                                    string IDproduk = Console.ReadLine();
+                                                    Console.WriteLine("Masukkan Nama Produk :");
+                                                    string NmaProduk = Console.ReadLine();
+                                                    Console.WriteLine("Masukkan Deskripsi Produk :");
+                                                    string Deskripsi = Console.ReadLine();
+                                                    Console.WriteLine("Masukkan Stok Produk :");
+                                                    string Stok = Console.ReadLine();
+                                                    Console.WriteLine("Masukkan Harga Jual :");
+                                                    string hrgajual = Console.ReadLine();
+                                                    try
+                                                    {
+                                                        pr.insert(IDproduk, NmaProduk, Deskripsi, Stok, hrgajual, conn);
+                                                        conn.Close();
+
+                                                    }
+                                                    catch
+                                                    {
+                                                        Console.WriteLine("\nAnda tidak memiliki " + "akses untuk menambah data");
+                                                    }
+
+                                                }
+                                            case '3':
+                                                conn.Close();
+                                                return;
+                                            default:
+                                                {
+                                                    Console.Clear();
+                                                    Console.WriteLine("\nInvalid option");
+                                                }
+                                                break;
                                         }
 
                                     }
+                                    catch
+                                    {
+                                        Console.WriteLine("\nCheck For The Value Entered.");
+                                    }
                                 }
                             }
+                        default:
+                            {
+                                Console.WriteLine("\nInvalid Option");
+                            }
                     }
-
+                }
+                catch
+                {
+                    Console.Clear();
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Tidak dapat mengakses database menggunakan user tersebut\n");
+                    Console.ResetColor();
                 }
             }
         }
